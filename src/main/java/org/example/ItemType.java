@@ -5,7 +5,9 @@ public enum ItemType {
     FISHING,
     GARDENING,
     FAMILY,
-    ELECTRICITY
+    ELECTRICITY,
+    CLOTHES,
+    DRINKS
 
 
 

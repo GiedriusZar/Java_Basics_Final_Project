@@ -4,12 +4,14 @@ public class Item {
 
     ItemType itemType;
     String itemName;
+    String itemID;
     int itemPrice;
     int itemStock;
 
-    public Item(ItemType itemType, String itemName, int itemPrice, int itemStock) {
+    public Item(ItemType itemType, String itemName, String itemID, int itemPrice, int itemStock) {
         this.itemType = itemType;
         this.itemName = itemName;
+        this.itemID = itemID;
         this.itemPrice = itemPrice;
         this.itemStock = itemStock;
     }
@@ -30,6 +32,14 @@ public class Item {
         this.itemName = itemName;
     }
 
+    public String getItemID() {
+        return itemID;
+    }
+
+    public void setItemID(String itemID) {
+        this.itemID = itemID;
+    }
+
     public int getItemPrice() {
         return itemPrice;
     }
@@ -44,5 +54,14 @@ public class Item {
 
     public void setItemStock(int itemStock) {
         this.itemStock = itemStock;
+    }
+
+    @Override
+    public String toString() {
+        return '\n' + "Type: " + itemType + '\n' +
+                "ItemID: " + itemID + '\n' +
+                "Item: " + itemName + '\n' +
+                "Price: " + itemPrice + '\n' +
+                "Stock left: " + itemStock  + '\n' ;
     }
 }
