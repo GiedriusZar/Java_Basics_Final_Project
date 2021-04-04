@@ -3,6 +3,7 @@ package org.example.usersServices;
 import org.example.Cart;
 import org.example.Item;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -13,8 +14,9 @@ public class User {
     private String cardNo;
     private String address;
     private static int userID;
-    private int maxAmount;
+    private int maxOrderAmount;
     private Cart cart;
+    private Date orderDate;
 
     Random randomID = new Random();
 
@@ -24,16 +26,17 @@ public class User {
         this.cardNo = cardNo;
         this.address = address;
         this.userID = randomIdGenerator();
-        this.maxAmount = maxAmount;
+        this.maxOrderAmount = getMaxAmount();
         this.cart = new Cart();
+        this.orderDate = orderDate;
     }
 
     public void setMaxAmount(int maxAmount) {
-        this.maxAmount = maxAmount;
+        this.maxOrderAmount = maxAmount;
     }
 
     public int getMaxAmount() {
-        return maxAmount;
+        return maxOrderAmount;
     }
 
     public int getUserID() {
@@ -63,5 +66,9 @@ public class User {
 
     public String getAddress() {
         return address;
+    }
+
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
     }
 }

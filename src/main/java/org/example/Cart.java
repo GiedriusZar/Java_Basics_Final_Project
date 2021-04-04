@@ -3,7 +3,7 @@ package org.example;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cart<I> {
+public class Cart {
 
 
     List<Item> itemsCart;

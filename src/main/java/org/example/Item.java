@@ -1,19 +1,28 @@
 package org.example;
 
-public class Item {
+import java.util.ArrayList;
+import java.util.List;
 
-    ItemType itemType;
-    String itemName;
-    String itemID;
-    int itemPrice;
-    int itemStock;
+public class Item extends ItemsBase{
+
+    private ItemType itemType;
+    private String itemName;
+    private String itemID;
+    private int itemPrice;
+    private int itemStock;
 
     public Item(ItemType itemType, String itemName, String itemID, int itemPrice, int itemStock) {
+        super();
         this.itemType = itemType;
         this.itemName = itemName;
         this.itemID = itemID;
         this.itemPrice = itemPrice;
         this.itemStock = itemStock;
+
+
+    }
+
+    public Item() {
     }
 
     public ItemType getItemType() {
@@ -62,6 +71,6 @@ public class Item {
                 "ItemID: " + itemID + '\n' +
                 "Item: " + itemName + '\n' +
                 "Price: " + itemPrice + '\n' +
-                "Stock left: " + itemStock  + '\n' ;
+                "Stock left: " + itemStock + '\n';
     }
 }
