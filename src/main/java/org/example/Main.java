@@ -8,17 +8,37 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+
 public class Main {
+
     public static void main(String[] args) throws CardNoLengthException {
 
         Item item = new Item();
+        ItemsBase allItemBase = new ItemsBase();
+
+
 
         Scanner scanner = new Scanner(System.in);
 
         String menuInput = "";
 
 
-        firstRegistration(scanner);
+        System.out.println("REGISTRATION");
+        System.out.print("Name: ");
+        String name = scanner.nextLine();
+        System.out.print("Surname: ");
+        String surname = scanner.nextLine();
+        System.out.print("Card number: ");
+        String cardNo = scanner.nextLine();
+        boolean cardNoLenght = cardNo.length() == 16;
+        if (cardNoLenght == false) {
+            throw new CardNoLengthException("Invalid card number") {
+            };
+        }
+        System.out.print("Address: ");
+        String address = scanner.nextLine();
+        User user = new User(name, surname, cardNo, address);
+
 
 
         while (!menuInput.equals("5")) {
@@ -29,46 +49,36 @@ public class Main {
 
 
                 case "1":
-                    //Todo -> All items list, and adding
-
+                    System.out.println(allItemBase.getAllItems());
                     break;
                 case "2":
-          //          System.out.println("Login");
-                    //Todo -> Checkig cart
+                 user.addItemToCart(new Item(ItemType.FISHING, "Rod", "587", 9, 5));
+                    //Todo -> Adding items
                     break;
                 case "3":
-               //     System.out.println("Exit");
+                    System.out.println(user.showCart());
+                    break;
+                case "4":
+
                     //Todo -> Removing items from cart
                     break;
-                default:
-              //      System.out.println("Nothing Selected");
-                    //Todo -> Changing order date
+                case "5":
+
+                    //Todo -> Set order date
                     break;
+                case "6":
+                    //Todo -> Change order date
+                    break;
+                case "7":
+                    System.out.println(user.showCart());
+                    break;
+                default:
+                    System.out.println("Nothing selected");
             }
         }
     }
 
-    private static void firstRegistration(Scanner scanner) {
-        System.out.println("REGISTRATION");
-        System.out.print("Name: ");
-        String name = scanner.nextLine();
-        System.out.print("Surname: ");
-        String surname = scanner.nextLine();
-        System.out.print("Card number: ");
-        String cardNo = scanner.nextLine();
-        System.out.print("Address: ");
-        String address = scanner.nextLine();
-        User user = new User(name, surname, cardNo, address);
-        System.out.println(user.getName());
-        System.out.println(user.getSurname());
-        System.out.println(user.getAddress());
-        System.out.println(user.getUserID());
-//        boolean cardNoLenght = cardNo.length() == 16;
-//        if (cardNoLenght == false) {
-//            throw new CardNoLengthException("Invalid card number") {
-//            };
-//        }
-    }
+
 
     private static void mainMenu() {
         String format = String.format("%15s", "MENU");
@@ -85,10 +95,13 @@ public class Main {
         System.out.println();
         System.out.println(format);
         System.out.println();
-        System.out.println("1 - Add items to my cart");
-        System.out.println("2 - Check my cart");
-        System.out.println("3 - Remove items from my cart");
-        System.out.println("4 - Change order date");
+        System.out.println("1 - See available items");
+        System.out.println("2 - Add items to my cart");
+        System.out.println("3 - Check my cart");
+        System.out.println("4 - Remove items from my cart");
+        System.out.println("5 - Set order date");
+        System.out.println("6 - Change order date");
+        System.out.println("7 - Exit");
     }
 
 //        private static void adminMenu () {

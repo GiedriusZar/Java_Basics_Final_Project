@@ -3,7 +3,7 @@ package org.example;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Item extends ItemsBase{
+public class Item{
 
     private ItemType itemType;
     private String itemName;
@@ -12,7 +12,6 @@ public class Item extends ItemsBase{
     private int itemStock;
 
     public Item(ItemType itemType, String itemName, String itemID, int itemPrice, int itemStock) {
-        super();
         this.itemType = itemType;
         this.itemName = itemName;
         this.itemID = itemID;
