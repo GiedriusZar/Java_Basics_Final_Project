@@ -5,7 +5,7 @@ import java.util.List;
 
 public class ItemsBase{
 
-    private List<Item> allItems = new ArrayList<>();
+    private  List<Item> allItems = new ArrayList<>();
 
     Item item1 = new Item(ItemType.FISHING, "Fishing rod", "2547", 99, 5);
     Item item2 = new Item(ItemType.CLOTHES, "Shoes", "2677", 35, 32);
@@ -16,7 +16,7 @@ public class ItemsBase{
     }
 
 
-    public List<Item> getAllItems() {
+    public  List<Item> getAllItems() {
         return allItems;
     }
 

@@ -2,26 +2,26 @@ package org.example;
 
 import com.sun.xml.internal.bind.v2.TODO;
 import org.example.usersServices.Exceptions.CardNoLengthException;
+import org.example.usersServices.Exceptions.DayOfWeekException;
 import org.example.usersServices.User;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.Year;
+import java.util.*;
 
 
 public class Main {
 
-    public static void main(String[] args) throws CardNoLengthException {
+    public static void main(String[] args) throws CardNoLengthException, DayOfWeekException {
 
         Item item = new Item();
         ItemsBase allItemBase = new ItemsBase();
 
-
-
         Scanner scanner = new Scanner(System.in);
 
         String menuInput = "";
-
 
         System.out.println("REGISTRATION");
         System.out.print("Name: ");
@@ -30,8 +30,7 @@ public class Main {
         String surname = scanner.nextLine();
         System.out.print("Card number: ");
         String cardNo = scanner.nextLine();
-        boolean cardNoLenght = cardNo.length() == 16;
-        if (cardNoLenght == false) {
+        if (cardNo.length() != 16) {
             throw new CardNoLengthException("Invalid card number") {
             };
         }
@@ -40,19 +39,17 @@ public class Main {
         User user = new User(name, surname, cardNo, address);
 
 
-
         while (!menuInput.equals("5")) {
             userMenu();
             menuInput = scanner.nextLine();
 
             switch (menuInput) {
 
-
                 case "1":
                     System.out.println(allItemBase.getAllItems());
                     break;
                 case "2":
-                 user.addItemToCart(new Item(ItemType.FISHING, "Rod", "587", 9, 5));
+                    user.addItemToCart(new Item(ItemType.FISHING, "Rod", "587", 9, 5));
                     //Todo -> Adding items
                     break;
                 case "3":
@@ -63,21 +60,27 @@ public class Main {
                     //Todo -> Removing items from cart
                     break;
                 case "5":
-
+                    System.out.println("\n \t\t\t\t\t\t\t IMPORTANT!! \n You can't change order date if Your delivery will arive in less than 5 days\n\n How many days from now would You like Your dellivery to arrive?");
+                    int days = scanner.nextInt();
+                    user.setDeliveryDate(LocalDate.now().plusDays(days));
+                    if (user.getDeliveryDate().getDayOfWeek()==DayOfWeek.SATURDAY||user.getDeliveryDate().getDayOfWeek()==DayOfWeek.SUNDAY){
+                        throw new DayOfWeekException("We dont deliver items on weekends");
+                    } else {
+                        System.out.println("Your dellivery will arrive at: " + user.getDeliveryDate());
+                    }
                     //Todo -> Set order date
                     break;
                 case "6":
                     //Todo -> Change order date
                     break;
                 case "7":
-                    System.out.println(user.showCart());
+                    userMenu();
                     break;
                 default:
                     System.out.println("Nothing selected");
             }
         }
     }
-
 
 
     private static void mainMenu() {
